@@ -13,10 +13,10 @@ body{
     margin-bottom: 20px;
 }
 
-/* .quiz-questions-item,
+.quiz-questions-item,
 .quiz-results-item{
-
-} */
+    margin-bottom: 20px;
+}
 
 .quiz-questions-item-answers{
     margin: 0;
@@ -38,4 +38,27 @@ body{
 .quiz-results-item-question{
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.quiz-results{
+    display: none;
+}
+
+.questions--hidden,
+.indicator--hidden,
+.btnNext--hidden{
+    display: none;
+}
+
+.results--visible,
+.btnRestart--visible{
+    display: block;
+}
+
+.answer--invalid{
+    color: red;
+}
+
+.answer--valid{
+    color:green;
 }
