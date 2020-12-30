@@ -1,51 +1,47 @@
-const DATA = [
-    {
+const DATA = [{
         question: 'Вопрос 1',
-        answers: [
-            {
+        answers: [{
                 id: '1',
                 value: 'Ответ 1',
-                correct: 'true',
+                correct: true,
             },
             {
                 id: '2',
                 value: 'Ответ 2',
-                correct: 'false',
+                correct: false,
             },
             {
                 id: '3',
                 value: 'Ответ 3',
-                correct: 'false',
+                correct: false,
             },
         ]
     },
     {
         question: 'Вопрос 2',
-        answers: [
-            {
+        answers: [{
                 id: '4',
                 value: 'Ответ 4',
-                correct: 'false',
+                correct: false,
             },
             {
                 id: '5',
                 value: 'Ответ 5',
-                correct: 'true',
+                correct: true,
             },
         ]
     },
     {
         question: 'Вопрос 3',
-        answers: [
-            {
+        answers: [{
                 id: '6',
                 value: 'Ответ 6',
-                correct: 'false',
+                correct: false,
             },
             {
                 id: '7',
                 value: 'Ответ 7',
-                correct: 'true',
+                correct: true,
             },
         ]
     },
@@ -70,7 +66,7 @@ const renderQuestions = (index) => {
         .map((answer) => `
                 <li>
                     <label>
-                        <input class="answer-input" type="radio" name=${index} value=${answer.id}>
+                        <input class="answer-input" type="radio" name="${index}" value="${answer.id}">
                         ${answer.value}
                     </label>
                 </li>
@@ -78,11 +74,9 @@ const renderQuestions = (index) => {
         .join('');
 
     questions.innerHTML = `
-    <div class="quiz-questions-item">
+        <div class="quiz-questions-item">
             <div class="quiz-questions-item-question">${DATA[index].question}</div>
-            <ul class="quiz-questions-item-answers">
-                ${renderAnswers()}
-            </ul>
+            <ul class="quiz-questions-item-answers">${renderAnswers()}</ul>
         </div>
     `;
 };
@@ -93,21 +87,11 @@ const renderResults = () => {
     const getClassname = (answer, questionIndex) => {
         let classname = '';
 
-         if (!answer.correct && answer.id === localResults[questionIndex]) {
+        if (!answer.correct && answer.id === localResults[questionIndex]) {
             classname = 'answer--invalid';
         } else if (answer.correct) {
             classname = 'answer--valid';
         }
-
-
-
-
-
-        // if (!answer.correct && answer.id === localResults[questionIndex]) {
-        //     classname = 'answer--invalid';
-        // } else if (answer.correct) {
-        //     classname = 'answer--valid';
-        // }
 
         return classname;
     };
@@ -133,10 +117,9 @@ const renderIndicator = (currentStep) => {
 
 quiz.addEventListener('change', (event) => {
     if (event.target.classList.contains('answer-input')) {
-
         localResults[event.target.name] = event.target.value;
         btnNext.disabled = false;
-    }
+    };
 });
 
 quiz.addEventListener('click', (event) => {
@@ -145,7 +128,6 @@ quiz.addEventListener('click', (event) => {
 
 
         if (DATA.length === nextQuestionIndex) {
-
             questions.classList.add('questions--hidden');
             results.classList.add('results--visible');
             indicator.classList.add('indicator--hidden');
@@ -158,7 +140,7 @@ quiz.addEventListener('click', (event) => {
         }
 
         btnNext.disabled = true;
-    }
+    };
     if (event.target.classList.contains('btn-restart')) {
         localResults = {};
         results.innerHTML = '';
@@ -170,7 +152,7 @@ quiz.addEventListener('click', (event) => {
         btnNext.classList.remove('btnNext--hidden');
 
         renderQuestions(0);
-    }
+    };
 });
 
 renderQuestions(0);
